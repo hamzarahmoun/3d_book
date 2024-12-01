@@ -48,7 +48,7 @@ export const UI = () => {
           className="pointer-events-auto mt-10 ml-10"
           href="https://lessons.wawasensei.dev/courses/react-three-fiber"
         >
-          <img className="w-20" src="/images/wawasensei-white.png" />
+          <img className="w-20" src="/images/logo1.png" />
         </a>
         <div className="w-full overflow-auto pointer-events-auto flex justify-center">
           <div className="overflow-auto flex items-center gap-4 max-w-full p-10">
@@ -79,7 +79,7 @@ export const UI = () => {
         </div>
       </main>
 
-      <div className="fixed inset-0 flex items-center -rotate-2 select-none">
+      <div className="fixed inset-0 flex items-center -rotate-2 select-none hidden">
         <div className="relative">
           <div className="bg-white/0  animate-horizontal-scroll flex items-center gap-8 w-max px-8">
             <h1 className="shrink-0 text-white text-10xl font-black ">
