@@ -9,7 +9,6 @@ function App() {
   
   return (
     <>
-    <Book/>
       <UI />
       <Loader />
       <Canvas shadows camera={{ position: [-0.5, 1, 4], fov: 45 }}>
