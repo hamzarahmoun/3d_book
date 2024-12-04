@@ -229,7 +229,23 @@ const Page = ({ number, front, back,page,opened, bookClosed, ...props }) => {
   const [highlighted, setHighlighted] = useState(false);
   useCursor(highlighted);
     return (
-        <group {...props} ref={group}>
+        <group 
+        {...props} 
+        ref={group}
+        onPointerEnter={(e) => {
+            e.stopPropagation();
+            setHighlighted(true);
+          }}
+          onPointerLeave={(e) => {
+            e.stopPropagation();
+            setHighlighted(false);
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+            setPage(opened ? number : number + 1);
+            setHighlighted(false);
+          }}
+        >
             <mesh scale={0.7}>
             <primitive
         object={manualSkinnedMesh}
