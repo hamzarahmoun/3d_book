@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { easing } from "maath";
 
 import {
@@ -244,17 +244,46 @@ const Page = ({ number, front, back,page,opened, bookClosed, ...props }) => {
 }
 export const Book = ({ ...props }) => {
     const [page] = useAtom(pageAtom);
+    const [delayedPage, setDelayedPage] = useState(page);
+
+  useEffect(() => {
+    let timeout;
+    const goToPage = () => {
+      setDelayedPage((delayedPage) => {
+        if (page === delayedPage) {
+          return delayedPage;
+        } else {
+          timeout = setTimeout(
+            () => {
+              goToPage();
+            },
+            Math.abs(page - delayedPage) > 2 ? 50 : 150
+          );
+          if (page > delayedPage) {
+            return delayedPage + 1;
+          }
+          if (page < delayedPage) {
+            return delayedPage - 1;
+          }
+        }
+      });
+    };
+    goToPage();
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [page]);
 
     return (
         <group>
             {[...pages].map((pageData, index) => (
                 
                 <Page 
-                page={page}
+                page={delayedPage}
                 key={index} 
                 number={index} 
-                opened={page > index}
-                bookClosed={page === 0 || page === pages.length}
+                opened={delayedPage > index}
+                bookClosed={delayedPage === 0 || delayedPage === pages.length}
                 {...pageData} />
              
             ))
