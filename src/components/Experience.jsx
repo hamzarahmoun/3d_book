@@ -1,10 +1,11 @@
-import { Environment, OrbitControls } from "@react-three/drei";
+import { Environment, OrbitControls,Float } from "@react-three/drei";
 import { Book } from "./Book";
 export const Experience = () => {
   return (
     <>
-        <Book/>
-
+    
+        <Book />
+      
       <OrbitControls />
       <Environment preset="studio"></Environment>
       <directionalLight
